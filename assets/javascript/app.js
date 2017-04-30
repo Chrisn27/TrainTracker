@@ -38,22 +38,28 @@ $(document).ready(function() {
     
     var name = sv.name;
     var destination = sv.destination;
-    var frequency = sv.frequency;
-    var nextArrival = null;
-    var minutesAway = null;
-    /* 
-    var svArr = Object.keys(sv);
-    var lastIndex = svArr.length - 1;
-    var lastKey = svArr[lastIndex];
-    var lastObj = sv[lastKey]
-	
-    console.log(name);     
-    console.log(role);
-    console.log(startDate);
-    console.log(rate);
-	*/
+    var frequency = sv.frequency
+    var firstTrain = sv.firstTrain;
+
+    // first train arrival minus one year to ensure it arrives before the current time
+    var firstTrainConvertered = moment(firstTrain, "hh:mm").subtract(1, "years");
+
+    // diff between current time and converted first train time
+    var diffTime = moment().diff(moment(firstTrainConvertered), "minutes");
+
+    // time apart remainder
+    var trainR = diffTime % frequency;
+
+    //
+    var nextArrival = moment().add(trainR, "minutes");
+
+    // minutes until next train
+    var minutesAway = frequency - trainR;
+
+    //var diffTime = moment().diff(moment(nextArrival), "minutes")
+
 	  
-    var tableRow = $("<tr>").attr("key", sv);
+    var tableRow = $("<tr>");
 
     //var convertedDate = moment(new Date(startDate));
 
