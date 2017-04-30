@@ -50,8 +50,9 @@ $(document).ready(function() {
     // time apart remainder
     var trainR = diffTime % frequency;
 
-    //
-    var nextArrival = moment().add(trainR, "minutes");
+    // next train
+    var nextArrivalLong = moment().add(trainR, "minutes");
+    var nextArrival = moment(nextArrivalLong).format("MMMM Do, h:mm:ss a");
 
     // minutes until next train
     var minutesAway = frequency - trainR;
