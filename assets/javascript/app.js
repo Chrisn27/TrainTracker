@@ -52,7 +52,7 @@ $(document).ready(function() {
 
     // next train
     var nextArrivalLong = moment().add(trainR, "minutes");
-    var nextArrival = moment(nextArrivalLong).format("MMMM Do, h:mm:ss a");
+    var nextArrival = moment(nextArrivalLong).format("MMMM Do, h:mm a");
 
     // minutes until next train
     var minutesAway = frequency - trainR;
@@ -81,5 +81,21 @@ $(document).ready(function() {
     console.log("Errors handled: " + errorObject.code);
 
   });
+
+/*
+// auto refresh testing
+
+function loadlink() {
+    $('#schedules').load( ,function() {
+    	$(this).unwrap();
+    }
+            
+}
+
+loadlink(); // This will run on page load
+setInterval(function(){
+    loadlink() // this will run after every 5 seconds
+}, 5000);
+*/
 
 });
